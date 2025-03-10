@@ -25,7 +25,10 @@ public class DemoProjectApplication implements CommandLineRunner{// using Comman
 	@Override
 	public void run(String... args) throws Exception {
 		logger.info("All persons from table -> {}", personJdbcDao.findAll());
-	
+		logger.info("User by id 1003-> {}", personJdbcDao.findById(1003));
+		logger.info("User by name 'Alex'-> {}", personJdbcDao.findByName("Alex"));
+		logger.info("User by location 'Brisbane' and ordered by name-> {}", personJdbcDao.findByLocationAndOrderByNameAsc("Brisbane"));
+		logger.info("All persons with name like 'Al'-> {}", personJdbcDao.findBYNameLike("%Al%"));
 	}
 
 }
