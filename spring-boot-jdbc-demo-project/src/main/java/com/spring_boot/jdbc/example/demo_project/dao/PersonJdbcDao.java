@@ -1,5 +1,6 @@
 package com.spring_boot.jdbc.example.demo_project.dao;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,6 +72,48 @@ public class PersonJdbcDao {
         return jdbcTemplate.query(
             "select * from person where name like ?", new Object[] {regex}, 
         new BeanPropertyRowMapper<PersonEntity>(PersonEntity.class)
+        );
+    }
+
+
+    public int deleteById(int id){
+        //returns an inetger which denotes number of rows deleted.
+        return jdbcTemplate.update(
+            "delete from person where id=?", new Object[] {id}
+        );
+    }
+
+    public int deleteByLocationOrId(int id, String location){
+        //returns an inetger which denotes number of rows deleted.
+        return jdbcTemplate.update(
+            "delete from person where id=? or location=?", new Object[] {id, location}
+        );
+    }
+    public int insertPerson(PersonEntity person){
+        //returns an inetger which denotes number of rows deleted.
+        return jdbcTemplate.update(
+            "insert into person (id, name, location, birth_date) "
+            +"values (?, ?, ?, ?) ", 
+            new Object[] {
+                person.getId(),
+                person.getName(),
+                person.getLocation(),
+                new Timestamp(person.getBirthDate().getTime())
+            }
+        );
+    }
+
+    public int updatePerson(PersonEntity person){
+        //returns an inetger which denotes number of rows deleted.
+        return jdbcTemplate.update(
+            "update person set name=?, location=?, birth_date=? "
+            +"where id=?", 
+            new Object[] {
+                person.getName(),
+                person.getLocation(),
+                new Timestamp(person.getBirthDate().getTime()),
+                person.getId()
+            }
         );
     }
 
