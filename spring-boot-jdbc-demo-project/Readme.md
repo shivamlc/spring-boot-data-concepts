@@ -4,3 +4,7 @@ Spring JDBC reduces the complexity by dealing with overheads itself. The code is
 
 ## Spring boot features:
 - Auto-configuration: this feature checks for classes available on classpath and does auto-configuration for them. It automatically configures connection to H2 database if it sees in-memory db like H2 on classpath. It auto configures a dispatcher servlet if it sees a web application on classpath. If it sees JPA on classpath, then it will auto configure EntityManagerFactory and TransactionManager.
+
+## Troubleshoot
+- list all processes running at port 8081: lsof -i tcp:8081
+- kill process: kill -9 pid
