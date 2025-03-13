@@ -1,0 +1,11 @@
+# Why use JPA (Java Persistence Api)?
+- With JDBC or Spring JDBC, we need to extract data from tables using queries and, map extracted data to Object beans using row mappers or BeanPropertyRowMapper.
+- Queries can become complex in large applications.
+- JPA eases the process by mapping object beans (also called entities) to tables (relations) in database.
+- JPA writes queries on behalf of developer.
+- JPA is an interface. Hibernate implements JPA.
+- Hibernate existed before JPA. Hibernate is a popular ORM framework.
+- JPA came in later after seeing sucess of Hibernate.
+- ORM framework maps object to a table (or relation) in database.
+- Hibernate has lot more functions than what JPA specifies.
+- We can use other ORM frameworks with JPA as well.
