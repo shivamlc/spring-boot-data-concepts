@@ -1,11 +1,14 @@
 package com.spring_data_demo.spring_jpa.repository;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.spring_data_demo.spring_jpa.entity.PersonEntity;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
 /*
@@ -25,6 +28,34 @@ public class PersonJpaRepository {
     public PersonEntity findById(int id)
     {
         return entityManager.find(PersonEntity.class, id);
+    }
+
+    public PersonEntity update(PersonEntity personEntity)
+    {
+        //merge checks if personEntity has Id or not
+        //if Id is missing then it adds id to the entity before updating the record
+        return entityManager.merge(personEntity);
+    }
+
+    public PersonEntity insert(PersonEntity personEntity)
+    {
+        //merge checks if personEntity has Id or not
+        //if Id is missing then it adds id to the entity before updating the record
+        //merge updates records as well as inserts new records
+        return entityManager.merge(personEntity);
+    }
+
+    public void deleteById(int id)
+    {
+        PersonEntity personEntity = findById(id);
+
+        entityManager.remove(personEntity);
+    }
+
+    public List<PersonEntity> showAll(){
+        TypedQuery<PersonEntity> namedTypedQuery = entityManager.createNamedQuery("show_all_persons",
+         PersonEntity.class);
+        return namedTypedQuery.getResultList();
     }
 
 }
