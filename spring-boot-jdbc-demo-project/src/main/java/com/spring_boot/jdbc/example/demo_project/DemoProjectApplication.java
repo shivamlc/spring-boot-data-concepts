@@ -53,8 +53,6 @@ public class DemoProjectApplication implements CommandLineRunner{// using Comman
 
 		logger.info("Updating person with details = {},{}", 
 		newPersonEntity, personJdbcDao.updatePerson(newPersonEntity));
-
-	
 	}
 
 }
