@@ -59,4 +59,9 @@ public class PersonEntity {
     public Date getBirthdate() {
         return birthdate;
     }
+
+    @Override
+    public String toString(){
+        return String.format("\nId: %s, Name: %s, Location: %s, Birthdate: %s", this.id, this.name, this.location, this.birthdate );
+    }
 }
